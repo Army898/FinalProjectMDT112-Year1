@@ -19,7 +19,6 @@ Servo myservo;
 
 /////////////////////////////
 
-int pos = 0;
 int SoundTime = 100;
 int red_light_pin= 3;
 int green_light_pin = 5;
@@ -28,23 +27,26 @@ int blue_light_pin = 6;
 void setup()
 {
     Serial.begin(9600); 
+    pinMode(2, INPUT_PULLUP);
     pinMode(red_light_pin, OUTPUT);
     pinMode(green_light_pin, OUTPUT);
     pinMode(blue_light_pin, OUTPUT);
+    myservo.attach(9);
     dht.begin();
     oled.begin(0x3C);
 }
 
 void loop()
 {
-    long TemperatureValue = dht.readTemperature();
-    long HumidityValue = dht.readHumidity();
-    long RainDropWaterValue = analogRead(A0);
+    float TemperatureValue = dht.readTemperature();
+    float HumidityValue = dht.readHumidity();
+    float RainDropWaterValue = analogRead(A0);
     
     if (TemperatureValue >= 0 && HumidityValue >= 0 && RainDropWaterValue >= 0)
     {
         if(HumidityValue >= 0 && HumidityValue < 49)        //ระดับ Green
         {
+            int pos = 20;
             if(RainDropWaterValue <= 800) //ถ้ามีหยดน้ำ
             {
                 tone(8,400,SoundTime++);
@@ -59,10 +61,16 @@ void loop()
                 oled.println(" %\t");
                 oled.println("Temperature: " + String(TemperatureValue) + " *C ");
                 oled.display();
-                RGB_color(0, 125, 0);
+                RGB_color(0, 125, 0);  
+                if(digitalRead(2)==0)
+                {
+                    noTone(8);
+                    delay(5000);
+                }  
             }
             if(RainDropWaterValue > 800)  //ถ้าไม่มีหยดน้ำ
             {
+                myservo.write(pos);
                 oled.clearDisplay();      
                 oled.setCursor(0, 0);        
 
@@ -94,6 +102,11 @@ void loop()
                 oled.println("Temperature: " + String(TemperatureValue) + " *C ");
                 oled.display();
                 RGB_color(0, 0, 125);  //blue
+                if(digitalRead(2)==0)
+                {
+                    noTone(8);
+                    delay(5000);
+                }
             }
             if(RainDropWaterValue > 800)  //ถ้าไม่มีหยดน้ำ
             {
@@ -109,6 +122,9 @@ void loop()
                 oled.println("Temperature: " + String(TemperatureValue) + " *C ");
                 oled.display();
                 RGB_color(0, 0, 125);  //Blue
+                delay(1000);
+                Serial.print("Humidity: " + String(HumidityValue));
+                Serial.println("Tem: " + String(TemperatureValue));
             }
         }
         if(HumidityValue >= 90 && HumidityValue == 100)            //ระดับ Red
@@ -128,6 +144,11 @@ void loop()
                 oled.println("Temperature: " + String(TemperatureValue) + " *C ");
                 oled.display();
                 RGB_color(125, 0, 0);  //Red
+                if(digitalRead(2)==0)
+                {
+                    noTone(8);
+                    delay(5000);
+                }
             }
             if(RainDropWaterValue > 800)  //ถ้าไม่มีหยดน้ำ
             {
