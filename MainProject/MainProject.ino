@@ -171,16 +171,7 @@ void loop()
                 myservo.write(pos);
             }
         }
-    }
-    else
-    {
-        oled.clearDisplay();      
-        oled.setCursor(0, 0);        
-        oled.setTextColor(SSD1306_WHITE);         
-        oled.setTextSize(2);                      
-        oled.println("Failed");
-        oled.display();
-    }   
+    }  
 }
 void RGB_color(int red_light_value, int green_light_value, int blue_light_value) 
 {
