@@ -55,7 +55,7 @@ void loop()
 
                 oled.setTextColor(SSD1306_WHITE);         
                 oled.setTextSize(1);                      
-                oled.println("Weather clear");
+                oled.println("Weather clear\n");
                 oled.print("Humidity: ");              
                 oled.print(HumidityValue);
                 oled.println(" %\t");
@@ -77,7 +77,7 @@ void loop()
 
                 oled.setTextColor(SSD1306_WHITE);         
                 oled.setTextSize(1);                      
-                oled.println("Weather clear");
+                oled.println("Weather clear\n");
                 oled.print("Humidity: ");              
                 oled.print(HumidityValue);
                 oled.println(" %\t");
@@ -87,7 +87,7 @@ void loop()
                 myservo.write(pos);
             }
         }
-        if(HumidityValue >= 50 && HumidityValue < 89)            //ระดับ Blue
+        if(HumidityValue >= 50 && HumidityValue < 79)            //ระดับ Blue
         {
             int pos = HumidityValue;
             if(RainDropWaterValue <= 800) //ถ้ามีหยดน้ำ
@@ -98,7 +98,7 @@ void loop()
 
                 oled.setTextColor(SSD1306_WHITE);         
                 oled.setTextSize(1);                      
-                oled.println("May be rain is coming");
+                oled.println("May be rain is coming\n");
                 oled.print("Humidity: ");              
                 oled.print(HumidityValue);
                 oled.println(" %\t");
@@ -119,7 +119,7 @@ void loop()
 
                 oled.setTextColor(SSD1306_WHITE);         
                 oled.setTextSize(1);                      
-                oled.println("May be rain is coming");
+                oled.println("May be rain is coming\n");
                 oled.print("Humidity: ");              
                 oled.print(HumidityValue);
                 oled.println(" %\t");
@@ -131,7 +131,7 @@ void loop()
                 Serial.println("Tem: " + String(TemperatureValue));
             }
         }
-        if(HumidityValue >= 90 && HumidityValue == 100)            //ระดับ Red
+        if(HumidityValue >= 80 && HumidityValue == 100)            //ระดับ Red
         {
             int pos = HumidityValue;
             if(RainDropWaterValue <= 800) //ถ้ามีหยดน้ำ
@@ -142,7 +142,7 @@ void loop()
 
                 oled.setTextColor(SSD1306_WHITE);         
                 oled.setTextSize(1);                      
-                oled.println("There is raining");
+                oled.println("It's raining\n");
                 oled.print("Humidity: ");              
                 oled.print(HumidityValue);
                 oled.println(" %\t");
@@ -163,7 +163,7 @@ void loop()
 
                 oled.setTextColor(SSD1306_WHITE);         
                 oled.setTextSize(1);                      
-                oled.println("There is raining");
+                oled.println("It's raining\n");
                 oled.print("Humidity: ");              
                 oled.print(HumidityValue);
                 oled.println(" %\t");
