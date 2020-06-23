@@ -127,8 +127,6 @@ void loop()
                 oled.display();
                 RGB_color(0, 0, 125);  //Blue
                 myservo.write(pos);
-                Serial.print("Humidity: " + String(HumidityValue));
-                Serial.println("Tem: " + String(TemperatureValue));
             }
         }
         if(HumidityValue >= 80 && HumidityValue == 100)            //ระดับ Red
@@ -173,6 +171,15 @@ void loop()
                 myservo.write(pos);
             }
         }
+    }
+    else
+    {
+        oled.clearDisplay();      
+        oled.setCursor(0, 0);        
+        oled.setTextColor(SSD1306_WHITE);         
+        oled.setTextSize(2);                      
+        oled.println("Failed");
+        oled.display();
     }   
 }
 void RGB_color(int red_light_value, int green_light_value, int blue_light_value) 
