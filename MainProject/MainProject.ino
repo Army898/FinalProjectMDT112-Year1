@@ -128,8 +128,6 @@ void loop()
                 oled.display();
                 RGB_color(0, 0, 125);  //Blue
                 myservo.write(pos);
-                Serial.println(HumidityValue);
-                Serial.println(TemperatureValue);
                 delay(300);
             }
         }
