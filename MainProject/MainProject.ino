@@ -84,8 +84,7 @@ void loop()
                 oled.println("Temperature: " + String(TemperatureValue) + " *C ");
                 oled.display();
                 RGB_color(0, 125, 0);
-                myservo.write(pos);
-                delay(300);
+                myservo.write(pos);  
             }
         }
         if(HumidityValue >= 50 && HumidityValue < 79)            //ระดับ Blue
@@ -128,7 +127,6 @@ void loop()
                 oled.display();
                 RGB_color(0, 0, 125);  //Blue
                 myservo.write(pos);
-                delay(300);
             }
         }
         if(HumidityValue >= 80 )            //ระดับ Red
@@ -171,7 +169,6 @@ void loop()
                 oled.display();
                 RGB_color(125, 0, 0);  //Red
                 myservo.write(pos);
-                delay(300);
             }
         }
     }  
