@@ -85,6 +85,7 @@ void loop()
                 oled.display();
                 RGB_color(0, 125, 0);
                 myservo.write(pos);
+                delay(300);
             }
         }
         if(HumidityValue >= 50 && HumidityValue < 79)            //ระดับ Blue
@@ -127,9 +128,12 @@ void loop()
                 oled.display();
                 RGB_color(0, 0, 125);  //Blue
                 myservo.write(pos);
+                Serial.println(HumidityValue);
+                Serial.println(TemperatureValue);
+                delay(300);
             }
         }
-        if(HumidityValue >= 80 && HumidityValue == 100)            //ระดับ Red
+        if(HumidityValue >= 80 )            //ระดับ Red
         {
             int pos = HumidityValue;
             if(RainDropWaterValue <= 800) //ถ้ามีหยดน้ำ
@@ -169,6 +173,7 @@ void loop()
                 oled.display();
                 RGB_color(125, 0, 0);  //Red
                 myservo.write(pos);
+                delay(300);
             }
         }
     }  
